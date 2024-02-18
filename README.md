@@ -10,3 +10,5 @@ GitHub repo URL: https://github.com/meryemaydinn/oblig1
 Fullt navn: Meryem Azacik
 
 Kort beskrivelse av applikasjon:
+
+Jeg har laget en side der man kan bestille kinobilletter. 
