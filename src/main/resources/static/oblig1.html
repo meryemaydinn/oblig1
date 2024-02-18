@@ -8,38 +8,47 @@
 
 <h1>Bestilling av kinobilletter</h1>
 <form>
-<div>
-    <label for="film">Velg film:</label>
-    <select id="film" name="film">
-        <option>Film 1</option>
-        <option>Film 2</option>
-        <option>Film 3</option>
-        <option>Film 4</option>
-    </select>
-</div>
+    <div>
+        <label for="film">Velg film:</label>
+        <select id="film" name="film">
+            <option value="" disabled selected>Velg film</option>
+            <option>Film 1</option>
+            <option>Film 2</option>
+            <option>Film 3</option>
+            <option>Film 4</option>
+        </select>
+        <div id="filmError"></div>
+    </div>
+
 
 <div>
     <label for="antall">Antall</label>
     <input type="number" id="antall" min="1">
+    <div id="antallError"></div>
 </div>
 <div>
     <label for="name">Fornavn</label>
     <input type="text" id="name">
+    <div id="nameError"></div>
 </div>
 <div>
     <label for="surname">Etternavn</label>
     <input type="text" id="surname">
+    <div id="surnameError"></div>
 </div>
 <div>
     <label for="phone">Telefonnr</label>
     <input type="tel" id="phone" name="phone">
+    <div id="phoneError"></div>
 </div>
 <div>
     <label for="email">Epost</label>
     <input type="email" id="email">
+    <div id="emailError"></div>
 </div>
 </form>
-<button type="button">Kjøp billett</button>
+
+<button type="button" onclick = "BillettBestilling()">Kjøp billett</button>
 
 
 <h2>Alle billetter</h2>
@@ -47,7 +56,7 @@
 <!-- Viser billettene -->
 <div id="alleBilletter"></div>
 
-<button type="button" id="slettAlleBilletter">Slett alle billettene</button>
+<button type="button" id="slettBilletter" onclick="slettBilletter()">Slett alle billettene</button>
 
 <script src="oblig1.js"></script>
 </body>
