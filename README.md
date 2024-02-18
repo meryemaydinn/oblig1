@@ -7,8 +7,6 @@ GitHub brukernavn: meryemaydinn
 
 GitHub repo URL: https://github.com/meryemaydinn/oblig1
 
-URL til Heroku app:
-
 Fullt navn: Meryem Azacik
 
 Kort beskrivelse av applikasjon:
