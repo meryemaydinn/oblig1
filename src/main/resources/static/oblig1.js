@@ -5,72 +5,79 @@ let Bestilling = [];
 function BillettBestilling (){
 
   let film = document.getElementById('film').value;
-    if (film == null) {
-        let ut;
-        ut = 'Velg en film';
-        document.getElementById('velg').nextElementSibling.innerHTML = ut;
-        document.getElementById('velg').nextElementSibling.style.color = 'red';
-    }
     let antall = document.getElementById('antall').value;
-    if ((antall == null) || (antall === '')) {
-        let ut;
-        ut = 'Må skrive noe inn i antall';
-        document.getElementById('antall').nextElementSibling.innerHTML = ut;
-        document.getElementById('antall').nextElementSibling.style.color = 'red';
-    }
     let name = document.getElementById('name').value;
-    if ((name == null) || (name === '')){
-        let ut;
-        ut = 'Må skrive noe inn i fornavnet';
-        document.getElementById('name').nextElementSibling.innerHTML = ut;
-        document.getElementById('name').nextElementSibling.style.color = 'red';
-    }
     let surname = document.getElementById('surname').value;
-    if ((surname == null) || (surname === '')) {
-        let ut;
-        ut = 'Må skirve noe inn i fornavnet';
-        document.getElementById('surname').nextElementSibling.innerHTML = ut;
-        document.getElementById('surname').nextElementSibling.style.color = 'red';
-    }
     let phone = document.getElementById('phone').value;
-    if ((phone == null) || (phone === '')) {
-        let ut;
-        ut = 'Må skrive noe inn i telefonnr';
-        document.getElementById('phone').nextElementSibling.innerHTML = ut;
-        document.getElementById('phone').nextElementSibling.style.color = 'red';
-    }
-    else if (!validatePhoneNumber(phone)){
-        let ut;
-        ut = 'Ugyldig Telefonnr';
-        document.getElementById('phone').nextElementSibling.innerHTML = ut;
-        document.getElementById('phone').nextElementSibling.style.color = 'red';
-    }
     let email = document.getElementById('email').value;
-    if ((email == null) || (email === '')) {
+    antall = Number(antall);
+
+    let valid = true;
+
+    if (!film.trim()) {
         let ut;
-        ut = 'Må skrive noe inn i epost';
-        document.getElementById('email').nextElementSibling.innerHTML = ut;
-        document.getElementById('email').nextElementSibling.style.color = 'red';
+        ut = "Velg en film";
+        document.getElementById("filmError").innerHTML = ut;
+        document.getElementById("filmError").style.color = "red";
+        valid = false;
+    } else {
+        document.getElementById("filmError").innerHTML = "";
     }
-    else if (!validateEmail(email)) {
+
+    if (isNaN(antall) || (antall <= 0)) {
         let ut;
-        ut = 'Ugyldig epostadresse';
-        document.getElementById('email').nextElementSibling.innerHTML = ut;
-        document.getElementById('email').nextElementSibling.style.color = 'red';
+        ut = "Må skrive noe inn i antall";
+        document.getElementById("antallError").innerHTML = ut;
+        document.getElementById("antallError").style.color = 'red';
+        valid = false;
+    } else {
+        document.getElementById("antallError").innerHTML = "";
     }
 
-    function validatePhoneNumber(phoneNumber) {
-        const regex = /^\d{8}$/;
-        return regex.test(phoneNumber);
+    if (!name.trim()){
+        let ut;
+        ut = "Må skrive noe inn i fornavnet";
+        document.getElementById("nameError").innerHTML = ut;
+        document.getElementById("nameError").style.color = 'red';
+        valid = false;
+    } else {
+        document.getElementById("nameError").innerHTML = "";
     }
 
-    function validateEmail(email) {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(String(email).toLowerCase());
+    if (!surname.trim()) {
+        let ut;
+        ut = "Må skirve noe inn i fornavnet";
+        document.getElementById("surnameError").innerHTML = ut;
+        document.getElementById("surnameError").style.color = 'red';
+        valid = false;
+    }else {
+        document.getElementById("surnameError").innerHTML = "";
     }
 
+    const phoneRegex = /^\d{8}$/;
+    if (!phoneRegex.test(phone.trim())) {
+        let ut;
+        ut = "Ugyldig Telefonnr";
+        document.getElementById("phoneError").innerHTML = ut;
+        document.getElementById("phoneError").style.color = 'red';
+        valid = false;
+    }else {
+        document.getElementById("phoneError").innerHTML = "";
+    }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email.trim())) {
+        let ut;
+        ut = "Ugyldig epostadresse";
+        document.getElementById("emailError").innerHTML = ut;
+        document.getElementById("emailError").style.color = 'red';
+        valid = false;
+    }
+    else {
+        document.getElementById("emailError").innerHTML = "";
+    }
 
+if (valid) {
     let informasjon = {
         film : film,
         antall :antall,
@@ -80,16 +87,19 @@ function BillettBestilling (){
         email : email,
     };
 
+
     Bestilling.push(informasjon);
 
-    document.getElementById('film').value = '';
-    document.getElementById('antall').value = '';
-    document.getElementById('name').value = '';
-    document.getElementById('surname').value = '';
-    document.getElementById('phone').value = '';
-    document.getElementById('email').value = '';
+    document.getElementById("film").value = "";
+    document.getElementById("antall").value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("surname").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("email").value = "";
 
     visBestilling();
+}
+    return valid;
 }
 
 function visBestilling() {
